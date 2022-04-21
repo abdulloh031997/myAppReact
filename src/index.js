@@ -1,14 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import { createStore } from 'redux';
+import rootReducer from './redux/reducers'
 import reportWebVitals from './reportWebVitals';
+import './assets/boxicons-2.0.7/css/boxicons.min.css';
+import './assets/css/grid.css';
+import './assets/css/index.css';
+import Layouts from './components/layouts/Layouts';
+import { BrowserRouter } from 'react-router-dom/cjs/react-router-dom.min';
+import { Provider } from 'react-redux';
+const store = createStore(
+  rootReducer
+)
 
+document.title = 'Admin Dashbord'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <Provider store={store}>
+  <BrowserRouter>
+    <Layouts/>
+  </BrowserRouter>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
